@@ -6,13 +6,18 @@ L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {
 
 
 var b5 = L.icon({
-    iconUrl: 'src/img/beaufort/beaufort5.png',
-    iconSize:     [100, 100],
-    iconAnchor:   [50, 50]
+	iconUrl: 'src/img/beaufort/beaufort5.png',
+	iconSize:     [100, 100],
+	iconAnchor:   [50, 50]
 });
 
 L.marker([51.5, -0.09], {icon: b5, iconAngle: -20}).addTo(_map).bindPopup("Longitude : 45<br>Latitude : 23<br>Noeud : 5");
 
-$( "#reduce" ).click(function() {
-  $("#sidebar").css("height", "0px");
+$("#reduce" ).click(function() {
+	if($("#sidebar").css("height") == "0px") {
+		$("#sidebar").css("height", "");
+		$("#sidebar").css("bottom", "30px");
+	} else
+		$("#sidebar").css("height", "0px");
 });
+
