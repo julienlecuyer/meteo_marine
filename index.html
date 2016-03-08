@@ -1,20 +1,22 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Météo Marine</title>
 	<meta charset="utf-8" />
-
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 	<link rel="stylesheet" href="src/leaflet/leaflet.css" />
+	<link rel="stylesheet" href="css/map.css" />
 </head>
+
 <body>
-	<div id="mapid" style="width: 100%; height: 100%; position: absolute;"></div>
-
-	<script src="src/leaflet/leaflet.js"></script>
-	<script src="src/leaflet/plugins/marker-rotate.js"></script>
-
-	<script src="js/map.js"></script>
+	<div id="mapid"></div>
+	<div id="sidebar">
+		<span id="reduce">-</span>
+	</div>
 </body>
+<script src="src/jquery-1.12.1.min.js"></script>
+<script src="src/leaflet/leaflet.js"></script>
+<script src="src/leaflet/plugins/marker-rotate.js"></script>
+
+<script src="js/map.js"></script>
 </html>

@@ -12,3 +12,7 @@ var b5 = L.icon({
 });
 
 L.marker([51.5, -0.09], {icon: b5, iconAngle: -20}).addTo(_map).bindPopup("Longitude : 45<br>Latitude : 23<br>Noeud : 5");
+
+$( "#reduce" ).click(function() {
+  $("#sidebar").css("height", "0px");
+});

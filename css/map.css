@@ -1,0 +1,30 @@
+body {
+	overflow: hidden;
+	margin: 0px;
+}
+
+#mapid {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+}
+
+#sidebar {
+	width: 300px;
+	top: 5px;
+	bottom: 30px;
+	right: 0px;
+	position: fixed;
+	background-color: white;
+	z-index: 100;
+	border-top: solid 40px #333;
+	border-radius: 5px;
+}
+
+#reduce {
+	position: absolute;
+	margin: -50px 270px;
+	color: white;
+	font-size: 45px;
+	cursor: pointer;
+}
