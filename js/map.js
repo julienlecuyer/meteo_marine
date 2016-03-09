@@ -2,6 +2,7 @@ var _map;
 
 $(function() {
 
+	/* Définition des propriétés de la carte de l'API Leaflet */
 	 _map = L.map('mapid',{
 		center 	: [48.1, -4.4833],
 		zoom 	: 6,
@@ -41,12 +42,12 @@ $(function() {
 });
 
 /* Modification du pas de zoom */
-var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel" //FF doesn't recognize mousewheel as of FF3.x
+//Action par la molette 
+var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel" 
 $('#mapid').bind(mousewheelevt, function(e){
-    var evt = window.event || e //equalize event object     
-    evt = evt.originalEvent ? evt.originalEvent : evt; //convert to originalEvent if possible               
-    var delta = evt.detail ? evt.detail*(-40) : evt.wheelDelta //check for detail first, because it is used by Opera and FF
-
+    var evt = window.event || e 
+    evt = evt.originalEvent ? evt.originalEvent : evt; 
+    var delta = evt.detail ? evt.detail*(-40) : evt.wheelDelta 
     if(delta > 0) {
         _map.zoomIn(3);
     }
@@ -55,6 +56,13 @@ $('#mapid').bind(mousewheelevt, function(e){
     }   
 });
 
+//Action par les boutons "+" et "-"
+$(".leaflet-control-container").find(".leaflet-control-zoom-in").click(function(){
+	_map.zoomIn(3);
+});
+$(".leaflet-control-zoom-out").click(function(){
+	_map.zoomOut(3);
+});
 
 /* fonction de conversion de la  vitesse (en noeuds) à sa force (echelle de Beaufort) pour affichier les bons icônes et */
 $("#sidebar").css("height", "350");
@@ -98,7 +106,6 @@ function speedToBeaufort (speed){
 
 	return beaufort;
 }
-
 
 /* Gestion des boite parametres, etc */ 
 $("#reduce" ).click(function() {
