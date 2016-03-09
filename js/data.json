@@ -1,0 +1,41 @@
+{
+  { 
+    "lat": "48.0",
+    "long": "-4.2",
+  	"speed": 5,
+    "direction": 0,
+    "u": null,
+    "v": null
+  },
+  { 
+    "lat": "48.0",
+    "long": "-4.0",
+  	"speed": 5,
+    "direction": 4,
+    "u": null,
+    "v": null
+  },
+  { 
+    "lat": "48.2",
+    "long": "-4.2",
+    "speed": 5,
+    "direction": 4,
+    "u": null,
+    "v": null
+  },
+  { 
+    "lat": "48.0",
+    "long": "-4.0",
+  	"speed": 5,
+    "direction": 4,
+    "u": null,
+    "v": null
+  }
+};
+
+/*
+L.marker([48.0, -4.2], {icon: b5, iconAngle: 0}).addTo(_map).bindPopup("Longitude : 48.0<br>Latitude : -4.0<br>Vitesse : 5<br>Direction : 0°");
+L.marker([48.0, -4.0], {icon: b5, iconAngle: 0}).addTo(_map).bindPopup("Longitude : 48.2<br>Latitude : -4.0<br>Vitesse : 5<br>Direction : 0°");
+L.marker([48.2, -4.2], {icon: b5, iconAngle: 0}).addTo(_map).bindPopup("Longitude : 48.0<br>Latitude : -4.2<br>Vitesse : 5<br>Direction : 0°");
+L.marker([48.2, -4.0], {icon: b5, iconAngle: 0}).addTo(_map).bindPopup("Longitude : 48.2<br>Latitude : -4.2<br>Vitesse : 5<br>Direction : 0°");
+*/
