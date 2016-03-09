@@ -39,18 +39,15 @@ $(function() {
 //L.marker([48.2, -4.2], {icon: b7, iconAngle: 0}).addTo(_map).bindPopup("Longitude : 48.0<br>Latitude : -4.2<br>Vitesse : 5<br>Direction : 0°");
 //L.marker([48.2, -4.0], {icon: b8, iconAngle: 0}).addTo(_map).bindPopup("Longitude : 48.2<br>Latitude : -4.2<br>Vitesse : 5<br>Direction : 0°");
 
-L.marker([50.5, -0.09], {icon: b5, iconAngle: -20}).addTo(_map).bindPopup("Longitude : 45<br>Latitude : 23<br>Noeud : 5");
-
-
-$("#sidebar").css("height", "350");
 $("#reduce" ).click(function() {
 	if($("#sidebar").css("height") == "0px") {
-		$("#sidebar").css("height", "350");
+		$("#sidebar").css("height", "");
 		$("#sidebar").css("bottom", "30px");
 	} else
 		$("#sidebar").css("height", "0px");
 });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -97,3 +94,5 @@ function speedToBeaufort (speed){
 	return beaufort;
 }
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 8fb1e58... Bien
