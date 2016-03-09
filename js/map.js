@@ -7,7 +7,6 @@ $(function() {
 		zoom 	: 6,
 		minZoom	: 3,
 		maxZoom	: 12
-		//12 - 9 - 6 - 3
 	});
 
 	L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {
@@ -44,7 +43,6 @@ $(function() {
 /* Modification du pas de zoom */
 var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel" //FF doesn't recognize mousewheel as of FF3.x
 $('#mapid').bind(mousewheelevt, function(e){
-
     var evt = window.event || e //equalize event object     
     evt = evt.originalEvent ? evt.originalEvent : evt; //convert to originalEvent if possible               
     var delta = evt.detail ? evt.detail*(-40) : evt.wheelDelta //check for detail first, because it is used by Opera and FF
@@ -59,6 +57,16 @@ $('#mapid').bind(mousewheelevt, function(e){
 
 
 /* fonction de conversion de la  vitesse (en noeuds) à sa force (echelle de Beaufort) pour affichier les bons icônes et */
+$("#sidebar").css("height", "350");
+$("#reduce" ).click(function() {
+	if($("#sidebar").css("height") == "0px") {
+		$("#sidebar").css("height", "350");
+		$("#sidebar").css("bottom", "30px");
+	} else
+		$("#sidebar").css("height", "0px");
+});
+
+
 function speedToBeaufort (speed){
 	var beaufort = 0;
 	if (speed < 1) 
@@ -100,3 +108,4 @@ $("#reduce" ).click(function() {
 	} else
 		$("#sidebar").css("height", "0px");
 });
+
