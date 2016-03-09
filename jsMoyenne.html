@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Titre de la page</title>
+  <meta  charset="UTF-8" />
+</head>
+<body>
+
+
+<script>
+
+
+function moyenne(Vit1, Ang1, Vit2,  Ang2, Vit3,  Ang3, Vit4,  Ang4){
+    
+	const Pi=3.1416;	
+	var xR, yR, vRes,theta, thetaDeg;
+	var x1=Vit1*Math.cos(Ang1*Pi/180.0);
+	var x2=Vit2*Math.cos(Ang2*Pi/180.0);
+	var x3=Vit3*Math.cos(Ang3*Pi/180.0);
+	var x4=Vit4*Math.cos(Ang4*Pi/180.0);
+
+	var y1=Vit1*Math.sin(Ang1*Pi/180.0);
+	var y2=Vit2*Math.sin(Ang2*Pi/180.0);
+	var y3=Vit3*Math.sin(Ang3*Pi/180.0);
+	var y4=Vit4*Math.sin(Ang4*Pi/180.0);	
+
+	xR=(x1+x2+x3+x4)/4.0;
+	yR=(y1+y2+y3+y4)/4.0;
+
+	if ( xR < 0.000001  && xR > -0.000001  ){
+	      xR = 0.0;
+	}
+
+	if ( yR < 0.000001  && yR > -0.000001  ){
+	      yR = 0.0;
+	}
+
+
+	if (xR == 0.0  && yR == 0.0 ){
+		theta = 0.0;	
+	} else if (yR==0.0 && xR<0) {
+	       theta = Pi;
+	} else {
+		theta = Math.atan (yR/xR);			//calcul de l'angle en radian
+	}
+	
+	if (xR <0.0){
+		thetaDeg=(theta+Pi)*180.0/Pi;	//conversion en degrés
+	}else{
+		thetaDeg=theta*180.0/Pi;		//conversion en degrés
+	}
+
+	vRes = ( Math.sqrt(Math.pow(xR , 2.0) + Math.pow(yR, 2.0)) );	//valeur de la résultante
+	
+	alert("Vitesse :"+vRes.toFixed(2)+'\n'+"Angle: "+thetaDeg.toFixed(2));
+}
+
+var v1 = 1.0;
+var a1 = 30.0;
+
+var v2 = 1.0;
+var a2 = 30.0+90.0;
+
+var v3 = 1.0;
+var a3 = 30.0+180.0;
+
+var v4 = 1.0;
+var a4 = 30.0+270.0;
+
+
+moyenne(v1, a1, v2,  a2, v3,  a3, v4,  a4);
+
+
+
+</script>
+
+</body>
+</html>
