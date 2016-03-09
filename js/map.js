@@ -24,7 +24,8 @@ $(function() {
 	];
 
 
-	$.getJSON('js/data.json', function (data){
+	$.getJSON('https://raw.githubusercontent.com/julienlecuyer/meteo_marine/master/js/data.json', function (data){
+		console.log(data);
 		$.each(data, function(index, d){
 			console.log(d);
 			L.marker([d.lat, d.long], {icon: beaufort[d.speed], iconAngle: d.direction}).addTo(_map).bindPopup("Latitude : '+ d.lat + '<br>Longitude : '+ d.long + '<br>Vitesse : '+ d.speed + '<br>Direction : '+ d.direction + '°");			
