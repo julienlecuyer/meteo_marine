@@ -2,7 +2,7 @@
     {
         "lat": "48.0",
         "long": "-4.2",
-        "speed": 12,
+        "speed": 66,
         "direction": 0,
         "u": null,
         "v": null
@@ -10,7 +10,7 @@
     {
         "lat": "48.0",
         "long": "-4.0",
-        "speed": 5,
+        "speed": 17,
         "direction": 270,
         "u": null,
         "v": null
@@ -18,7 +18,7 @@
     {
         "lat": "48.2",
         "long": "-4.2",
-        "speed": 10,
+        "speed": 55,
         "direction": 180,
         "u": null,
         "v": null
@@ -26,7 +26,7 @@
     {
         "lat": "48.2",
         "long": "-4.0",
-        "speed": 5,
+        "speed": 20,
         "direction": 45,
         "u": null,
         "v": null
