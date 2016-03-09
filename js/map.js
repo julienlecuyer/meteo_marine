@@ -31,7 +31,7 @@ $(function() {
 		L.icon({ iconUrl: 'src/img/beaufort/beaufort12.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]})
 	];
 
-	$.getJSON('https://raw.githubusercontent.com/julienlecuyer/meteo_marine/master/js/data.json', function (data){
+	$.getJSON('https://raw.githubusercontent.com/julienlecuyer/meteo_marine/master/data/previsions.json', function (data){
 		$.each(data, function(index, d){
 			var power = speedToBeaufort(d.speed);
 			L.marker([d.lat, d.long], {
