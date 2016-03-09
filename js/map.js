@@ -1,6 +1,14 @@
+var _map;
+
 $(function() {
 
-	var _map = L.map('mapid').setView([48.1, -4.4833], 9);
+	 _map = L.map('mapid',{
+		center 	: [48.1, -4.4833],
+		zoom 	: 6,
+		minZoom	: 3,
+		maxZoom	: 12
+		//12 - 9 - 6 - 3
+	});
 
 	L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {
 		attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -23,7 +31,6 @@ $(function() {
 		L.icon({ iconUrl: 'src/img/beaufort/beaufort12.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]})
 	];
 
-
 	$.getJSON('https://raw.githubusercontent.com/julienlecuyer/meteo_marine/master/js/data.json', function (data){
 		$.each(data, function(index, d){
 			var power = speedToBeaufort(d.speed);
@@ -34,19 +41,24 @@ $(function() {
 	});
 });
 
-//L.marker([48.0, -4.2], {icon: b5, iconAngle: 0}).addTo(_map).bindPopup("Longitude : 48.0<br>Latitude : -4.0<br>Vitesse : 5<br>Direction : 0°");
-//L.marker([48.0, -4.0], {icon: b6, iconAngle: 90}).addTo(_map).bindPopup("Longitude : 48.2<br>Latitude : -4.0<br>Vitesse : 5<br>Direction : 0°");
-//L.marker([48.2, -4.2], {icon: b7, iconAngle: 0}).addTo(_map).bindPopup("Longitude : 48.0<br>Latitude : -4.2<br>Vitesse : 5<br>Direction : 0°");
-//L.marker([48.2, -4.0], {icon: b8, iconAngle: 0}).addTo(_map).bindPopup("Longitude : 48.2<br>Latitude : -4.2<br>Vitesse : 5<br>Direction : 0°");
+/* Modification du pas de zoom */
+var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel" //FF doesn't recognize mousewheel as of FF3.x
+$('#mapid').bind(mousewheelevt, function(e){
 
-$("#reduce" ).click(function() {
-	if($("#sidebar").css("height") == "0px") {
-		$("#sidebar").css("height", "");
-		$("#sidebar").css("bottom", "30px");
-	} else
-		$("#sidebar").css("height", "0px");
+    var evt = window.event || e //equalize event object     
+    evt = evt.originalEvent ? evt.originalEvent : evt; //convert to originalEvent if possible               
+    var delta = evt.detail ? evt.detail*(-40) : evt.wheelDelta //check for detail first, because it is used by Opera and FF
+
+    if(delta > 0) {
+        _map.zoomIn(3);
+    }
+    else{
+        _map.zoomOut(3);
+    }   
 });
 
+
+/* fonction de conversion de la  vitesse (en noeuds) à sa force (echelle de Beaufort) pour affichier les bons icônes et */
 function speedToBeaufort (speed){
 	var beaufort = 0;
 	if (speed < 1) 
@@ -78,3 +90,13 @@ function speedToBeaufort (speed){
 
 	return beaufort;
 }
+
+
+/* Gestion des boite parametres, etc */ 
+$("#reduce" ).click(function() {
+	if($("#sidebar").css("height") == "0px") {
+		$("#sidebar").css("height", "");
+		$("#sidebar").css("bottom", "30px");
+	} else
+		$("#sidebar").css("height", "0px");
+});
