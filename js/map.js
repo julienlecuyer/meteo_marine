@@ -13,11 +13,27 @@ var b5 = L.icon({
 
 L.marker([51.5, -0.09], {icon: b5, iconAngle: -20}).addTo(_map).bindPopup("Longitude : 45<br>Latitude : 23<br>Noeud : 5");
 
+L.marker([50.5, -0.09], {icon: b5, iconAngle: -20}).addTo(_map).bindPopup("Longitude : 45<br>Latitude : 23<br>Noeud : 5");
+
+
+$("#sidebar").css("height", "350");
 $("#reduce" ).click(function() {
 	if($("#sidebar").css("height") == "0px") {
-		$("#sidebar").css("height", "");
+		$("#sidebar").css("height", "350");
 		$("#sidebar").css("bottom", "30px");
 	} else
 		$("#sidebar").css("height", "0px");
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
