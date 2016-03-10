@@ -1,0 +1,16 @@
+
+-v : détails des noms des champs
+-s : affichage normal
+-wind_speed : selection de la vitesse du vent
+-wind_dir : selection de la direction du vent
+-ij : selection point dans la grille
+-spread : data to file.txt
+
+
+
+
+wgrib2 fichier_grib -wind_speed out -wind_dir out
+wgrib2 out -s | findstr /R /C":WIND:10[ ]*m[ ]above[ ]ground" | wgrib2 -i out -spread out.txt
+
+parser_json out.txt
+>> data.json
