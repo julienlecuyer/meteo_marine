@@ -7,11 +7,13 @@ $(function() {
 		center 	: [48.1, -4.4833],
 		zoom 	: 6,
 		minZoom	: 4,
-		maxZoom	: 10
+		maxZoom	: 8
 	});
 
 	L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {}).addTo(_map);
 
+	var b = new Beaufort();
+	b.drawFromJSON('https://raw.githubusercontent.com/julienlecuyer/meteo_marine/master/data/previsions16030906.json');
 });
 
 /* Modification du pas de zoom */
