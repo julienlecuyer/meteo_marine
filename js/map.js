@@ -32,7 +32,7 @@ $(function() {
 	];
 
 	
-	$.getJSON('https://raw.githubusercontent.com/julienlecuyer/meteo_marine/master/data/previsions.json', function (data){
+	$.getJSON('https://raw.githubusercontent.com/julienlecuyer/meteo_marine/master/data/previsions16030900.json', function (data){
 		$.each(data, function(index, d){
 			var power = speedToBeaufort(d.speed);
 			L.marker([d.lat, d.long], {
