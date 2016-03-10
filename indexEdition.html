@@ -21,60 +21,66 @@
 		<span id="title">Edition</span>
 		<span id="reduce">-</span>
 		<div id="result" style = "margin :10px">
+				Date de début:
+				<input type="text" value="" id="datetimepicker"/><br><br>
 
-			
-			Date de début:
-			<input type="text" value="" id="datetimepicker"/><br><br>
+				Durée (En heure):
+				<input style="width: 40px;" type="number" value="" id="datetimepicker"/><br><br>
 
-			Durée (En heure):
-			<input style="width: 40px;" type="number" value="" id="datetimepicker"/><br><br>
+				<div class = "aLaLigne">
+				<span style="margin-right:10px"> Zone de selection </span>
+		  				<input id="butSelect" class="cmn-toggle cmn-toggle-round" type="checkbox">
+		  				<label for="butSelect"></label>
+		  		</div>
 
-			<div class = "aLaLigne">
-			<span style="margin-right:10px"> Zone de selection </span>
-	  				<input id="butSelect" class="cmn-toggle cmn-toggle-round" type="checkbox">
-	  				<label for="butSelect"></label>
-	  		</div>
-
-			<div class = "aLaLigne" style="margin-top: 10px; margin-bottom: 10px;">
-				<p style="width : 180px;">
-				  <label for="valVitVent">Vitesse vent:</label>
-				  <input type="text" id="valVitVent" readonly style="width : 70px; border:0; color:#f6931f; font-weight:bold;">
-				</p>
-				<div id="slider-vitVent" style="height:40px;"></div>
-			</div>
+				<div class = "aLaLigne" style="margin-top: 10px; margin-bottom: 10px;">
+					<p style="width : 180px;">
+					  <label for="valVitVent">Vitesse vent:</label>
+					  <input type="text" id="valVitVent" readonly style="width : 70px; border:0; color:#f6931f; font-weight:bold;">
+					</p>
+					<div id="slider-vitVent" style="height:40px;"></div>
+				</div>
 
 
-			<div class = "aLaLigne" style="margin-top: 10px; margin-bottom: 10px;">
-				<p style="width : 180px;">
-				  <label for="valPression">Pression:</label>
-				  <input type="text" id="valPression" readonly style="width : 70px; border:0; color:#f6931f; font-weight:bold;">
-				</p>
-				<div id="slider-pression" style="height:40px;"></div>
-			</div>
+				<div class = "aLaLigne" style="margin-top: 10px; margin-bottom: 10px;">
+					<p style="width : 180px;">
+					  <label for="valPression">Pression:</label>
+					  <input type="text" id="valPression" readonly style="width : 70px; border:0; color:#f6931f; font-weight:bold;">
+					</p>
+					<div id="slider-pression" style="height:40px;"></div>
+				</div>
 
 
-			<div class = "aLaLigne" style="margin-top: 10px; margin-bottom: 20px;">
-				<p style="width : 180px;">
-				  <label for="valdirVent">Direction vent:</label>
+				<div class = "aLaLigne" style="margin-top: 10px; margin-bottom: 20px;">
+					<p style="width : 180px;">
+					  <label for="valdirVent">Direction vent:</label>
 
-				  <input type="text" id="valdirVent" readonly style="width : 40px; border:0; color:#f6931f; font-weight:bold;">
-				</p>
-				<div id="slider-dirVent" style="height:40px;" ></div>
+					  <input type="text" id="valdirVent" readonly style="width : 40px; border:0; color:#f6931f; font-weight:bold;">
+					</p>
+					<div id="slider-dirVent" style="height:40px;" ></div>
 
-			</div>
+				</div>
 
-			<div id="infoPos">
-		        Latitude Sud Ouest:<br>
-		        <input type="text" class="laso"><br>
-		        Longitude Sud Ouest:<br>
-		        <input type="text" class="loso"><br>
-		        Latitude Nord Est:<br>
-		        <input type="text" class="lane"><br>
-		        Longitude Nord Est:<br>
-		        <input type="text" class="lone"> </br>
-	        </div>
+				<div id="infoPos">
+			        Latitude Sud Ouest:<br>
+			        <input type="text" class="laso"><br>
+			        Longitude Sud Ouest:<br>
+			        <input type="text" class="loso"><br>
+			        Latitude Nord Est:<br>
+			        <input type="text" class="lane"><br>
+			        Longitude Nord Est:<br>
+			        <input type="text" class="lone"> </br>
+		        </div>
 
-	        <input type="button" value = "Valider sur toute la carte" id="butVal">
+		        <input type="button" value = "Valider sur toute la carte" id="butVal">
+		        <input type="button" value = "Supprimer Selection" id="butSuppr">
+		        <input type="button" value = "Retour" id="butRet">
+
+		        </br>
+		        Toutes les editions :
+
+		         <div id="allEdit" style="margin-top: 10px ; overflow:scroll; border:#000000 1px solid; height: 80px">
+		         </div>
     	</div>
 	</div>
 </body>
