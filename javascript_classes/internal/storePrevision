@@ -1,0 +1,6 @@
+<?php
+  if(isset($_POST['prevision'])) {
+  	$decodedPrevision = json_decode($_POST['prevision']);
+	echo $decodedPrevision;
+  }
+?>
