@@ -8,38 +8,86 @@
     <link rel="stylesheet" href="src/leaflet-areaselect.css" />
 	<link rel="stylesheet" href="css/map.css" />
 	<link rel="stylesheet" href="css/onoffswitch.css"/>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+	
+
 </head>
 
 <body>
 	<div id="mapid"></div>
 
 	<div id="sidebar">
-		<span id="title">Parametres</span>
+		<span id="title">Edition</span>
 		<span id="reduce">-</span>
-		<div id="result">
+		<div id="result" style = "margin :10px">
 
-			<table>
-				<td>Zone de selection</td>
-				<td>
-					<div class="switch">
-	  				<input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
-	  				<label for="cmn-toggle-1"></label>
-	  			</td>
-			</table>
-	        Selection Sud Ouest:<br>
-	        <input type="text" class="so"><br>
-	        
-	        Selection Nord Est:<br>
-	        <input type="text" class="ne">
+			
+			Date de début:
+			<input type="text" value="" id="datetimepicker"/><br><br>
+
+			Durée (En heure):
+			<input style="width: 40px;" type="number" value="" id="datetimepicker"/><br><br>
+
+			<div class = "aLaLigne">
+			<span style="margin-right:10px"> Zone de selection </span>
+	  				<input id="butSelect" class="cmn-toggle cmn-toggle-round" type="checkbox">
+	  				<label for="butSelect"></label>
+	  		</div>
+
+			<div class = "aLaLigne" style="margin-top: 10px; margin-bottom: 10px;">
+				<p style="width : 180px;">
+				  <label for="valVitVent">Vitesse vent:</label>
+				  <input type="text" id="valVitVent" readonly style="width : 70px; border:0; color:#f6931f; font-weight:bold;">
+				</p>
+				<div id="slider-vitVent" style="height:40px;"></div>
+			</div>
+
+
+			<div class = "aLaLigne" style="margin-top: 10px; margin-bottom: 10px;">
+				<p style="width : 180px;">
+				  <label for="valPression">Pression:</label>
+				  <input type="text" id="valPression" readonly style="width : 70px; border:0; color:#f6931f; font-weight:bold;">
+				</p>
+				<div id="slider-pression" style="height:40px;"></div>
+			</div>
+
+
+			<div class = "aLaLigne" style="margin-top: 10px; margin-bottom: 20px;">
+				<p style="width : 180px;">
+				  <label for="valdirVent">Direction vent:</label>
+
+				  <input type="text" id="valdirVent" readonly style="width : 40px; border:0; color:#f6931f; font-weight:bold;">
+				</p>
+				<div id="slider-dirVent" style="height:40px;" ></div>
+
+			</div>
+
+			<div id="infoPos">
+		        Latitude Sud Ouest:<br>
+		        <input type="text" class="laso"><br>
+		        Longitude Sud Ouest:<br>
+		        <input type="text" class="loso"><br>
+		        Latitude Nord Est:<br>
+		        <input type="text" class="lane"><br>
+		        Longitude Nord Est:<br>
+		        <input type="text" class="lone"> </br>
+	        </div>
+
+	        <input type="button" value = "Valider sur toute la carte" id="butVal">
     	</div>
 	</div>
 </body>
 
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="src/jquery-1.12.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="src/leaflet/leaflet.js"></script>
 <script src="src/leaflet/plugins/marker-rotate.js"></script>
 <script src="src/leaflet-areaselect.js"></script>
 <script src="js/map.js"></script>
 <script src="js/areaSelect.js"></script>
+
+<script src="js/jquery.datetimepicker.full.js"></script>
 </html>

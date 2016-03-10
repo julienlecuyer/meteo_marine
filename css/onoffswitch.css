@@ -1,9 +1,5 @@
-p {
-  text-align: right;
-  clear: both;
-}
-p span {
-  float: left;
+.aLaLigne { 
+display: flex;
 }
 
 .cmn-toggle {
