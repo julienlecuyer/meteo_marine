@@ -5,7 +5,7 @@
 
 function ZoneGeographique (twoDimArrayOfPointGeographiques, date) {
 	this.pointsGeographiques = twoDimArrayOfPointGeographiques;
-	this.date = date.toLocaleDateString()+' '+date.toLocaleTimeString();
+	this.date = date;
 }
 
 ZoneGeographique.prototype.getNombreDePointGeographique = function() {
