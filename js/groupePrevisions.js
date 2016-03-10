@@ -4,8 +4,11 @@
 	(exemple les 4 objet Prevision au niveau de zoom 1 donnent un seul objet Prevision au niveau de zoom 2)
 */
 
-function groupePrevisions () {
+function groupePrevisions (point0, point1, point2, point3) {
 	this.tabPrev = new Array(4);
-	this.
+	this.tabPrev[0] = point0;
+	this.tabPrev[1] = point1;
+	this.tabPrev[2] = point2;
+	this.tabPrev[3] = point3;
 }
 
