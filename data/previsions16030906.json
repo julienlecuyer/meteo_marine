@@ -1,7 +1,7 @@
 [
     {
         "lat": "48.0",
-        "long": "-4.2",
+        "long": "-4.5",
         "speed": 50,
         "direction": 0
     },
@@ -12,13 +12,13 @@
         "direction": 270
     },
     {
-        "lat": "48.2",
-        "long": "-4.2",
+        "lat": "48.5",
+        "long": "-4.5",
         "speed": 55,
         "direction": 180
     },
     {
-        "lat": "48.2",
+        "lat": "48.5",
         "long": "-4.0",
         "speed": 20,
         "direction": 45
