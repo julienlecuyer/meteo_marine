@@ -21,6 +21,27 @@ function Draw () {
 	];
 }
 
+
+Draw.prototype.drawFromJSON = function(nomDuFichier) {
+	var self = this;
+	$.getJSON(nomDuFichier, function (data){
+		$.each(data, function(index, d){
+			var power = self.speedToBeaufort(d.s);
+			L.marker([d.y, d.x], {
+				icon: self.beaufortIcon[power], 
+				iconAngle: d.d
+			}).addTo(_map).bindPopup("Latitude : "+ d.y +"<br>Longitude : "+ d.x +"<br>Vitesse : "+ d.s +" Noeuds<br>Force : "+ power +"<br>Direction : "+ d.d +"°");			
+		});
+	});
+};
+
+
+Draw.prototype.getZone = function(){
+	
+	(_map.getBounds().getNorthWest());
+	return zone;
+}
+
 /* fonction de conversion de la  vitesse (en noeuds) à sa force (echelle de Beaufort) pour afficher les bons icônes */
 Draw.prototype.speedToBeaufort = function(speed) {
 	var beaufort = 0;
@@ -52,17 +73,4 @@ Draw.prototype.speedToBeaufort = function(speed) {
 		beaufort = 12;
 
 	return beaufort;
-};
-
-Draw.prototype.drawFromJSON = function(nomDuFichier) {
-	var self = this;
-	$.getJSON(nomDuFichier, function (data){
-		$.each(data, function(index, d){
-			var power = self.speedToBeaufort(d.s);
-			L.marker([d.y, d.x], {
-				icon: self.beaufortIcon[power], 
-				iconAngle: d.d
-			}).addTo(_map).bindPopup("Latitude : "+ d.y +"<br>Longitude : "+ d.x +"<br>Vitesse : "+ d.s +" Noeuds<br>Force : "+ power +"<br>Direction : "+ d.d +"°");			
-		});
-	});
 };
