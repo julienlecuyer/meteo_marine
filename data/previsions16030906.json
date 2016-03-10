@@ -18,6 +18,13 @@
         "direction": 180
     },
     {
+        "lat": "50",
+        "long": "-4.5",
+        "speed": 55,
+        "direction": 180
+    },
+    
+    {
         "lat": "48.5",
         "long": "-4.0",
         "speed": 20,
