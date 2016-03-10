@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+	<title>Testing page for Prevision classes</title>
+</head>
+<body>
+
+<p id="data-holder1">On retourne le nombre de points pour le 10/03/2016 :</p>
+
+<p></p>
+<p id="data-holder2"></p>
+
+<script src="core/Vent.js"></script>
+<script src="core/Pression.js"></script>
+<script src="core/Point.js"></script>
+<script src="core/PointGeographique.js"></script>
+<script src="core/ZoneGeographique.js"></script>
+<script src="Prevision.js"></script>
+<script>
+	var dataHolder = document.getElementById('data-holder1');
+
+	var vent = new Vent(20.2, 30.5);
+	var pression = new Pression(60.34);
+	var point = new Point(22.44, 64.32);
+	var pointGeo = new PointGeographique(vent, point, pression, new Date());
+
+	console.log(pointGeo.getDate());
+	var tabOfGeoDots = [
+		[pointGeo, pointGeo],
+		[pointGeo, pointGeo, pointGeo],
+		[pointGeo, pointGeo]
+	];
+
+	var zoneGeo = new ZoneGeographique(tabOfGeoDots);
+	var prevision = new Prevision(
+		[ zoneGeo, zoneGeo, zoneGeo],
+		'10/3/2016 23',
+		'11/3/2016 00'
+	);
+
+	var total = prevision.getPointsParDate('10/3/2016 23');
+	dataHolder.innerHTML += total.length; 
+
+	prevision.modifierAttributsPoints(
+		'10/3/2016 23',
+		2.1,
+		1.2,
+		new Vent(100.00, 120.00)
+	);
+</script>
+</body>
+</html>
