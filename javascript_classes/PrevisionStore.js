@@ -10,7 +10,7 @@ function PrevisionStore () {}
 
 PrevisionStore.createLogDate = function() {
 	var now = new Date();
-	return now.toLocaleDateString()+' '+now.getUTCMilliseconds();
+	return now.toLocaleDateString()+' '+now.toLocaleTimeString()+','+now.getUTCMilliseconds();
 };
 
 PrevisionStore.formaterDonnees = function(previsionAFormatee) {
@@ -22,7 +22,7 @@ PrevisionStore.formaterDonnees = function(previsionAFormatee) {
  Retourne les données reçues par le serveur.
  TODO obtenir le responseText en valeur de retour. PB : asynchronisme.
 */
-PrevisionStore.envoyerDonneesAuServeur = function(donnees) {
+PrevisionStore.envoyerDonneesAuServeur = function(donnees, dataHolderName) {
 	// Envoi de données par requête AJAX asynchrone.
 	var dataHolder = document.getElementById('data-holder1');
 	var xhr = new XMLHttpRequest();
@@ -50,7 +50,7 @@ PrevisionStore.envoyerDonneesAuServeur = function(donnees) {
 				if (xhr.status === 200) {
 					dataHolder.innerHTML += PrevisionStore.createLogDate()
 					+' Données ont été réceptionnées avec succès par le serveur !<br>';
-					document.getElementById('data-holder2').innerHTML +=
+					document.getElementById(dataHolderName).innerHTML +=
 					'<pre>'+xhr.responseText+'</pre>';
 					break;
 				}
@@ -58,6 +58,15 @@ PrevisionStore.envoyerDonneesAuServeur = function(donnees) {
 	});
 };
 
-PrevisionStore.lireDonneesDuServeur = function(donnees) {
-	//TODO
+PrevisionStore.lireDonneesDuServeur = function(url, dataHolderName) {
+	var xhr = new XMLHttpRequest();
+	var dataHolder = document.getElementById(dataHolderName);
+	xhr.open('GET', url, true);
+	xhr.send();
+
+	xhr.addEventListener('readystatechange', function() {
+		if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+			dataHolder.innerHTML = '<pre>'+xhr.responseText+'</pre>';
+		}
+	});
 };

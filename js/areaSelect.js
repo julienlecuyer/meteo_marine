@@ -1,6 +1,13 @@
-$(function() {
+var allEdit = new Array();
+var allZoneConfig = new Array();
+var nbEdit = 0;
+var zoneCrt = -1;
 
+$(function() {
+  $('#butSuppr').hide();
   $("#infoPos").hide();
+  $('#butRet').hide();
+  
     $( "#slider-vitVent" ).slider({
       orientation: "vertical",
       range: "min",
@@ -44,7 +51,7 @@ $.datetimepicker.setLocale('fr');
 
 
 $('#datetimepicker').datetimepicker();
-$('#datetimepicker').datetimepicker({step:10});
+$('#datetimepicker').datetimepicker({step:60});
 
 $('.some_class').datetimepicker();
 
@@ -61,11 +68,109 @@ $('#default_datetimepicker').datetimepicker({
 
 
 $("#butVal").click(function(){
-var laDeb = $("#result .lane").val();
-var loDeb = $("#result .lone").val();
-var laFin = $("#result .laso").val();
-var loFin = $("#result .loso").val();
-alert(laDeb + 1);
+var laFin = parseFloat($("#result .lane").val());
+var loFin = parseFloat($("#result .lone").val());
+var laDeb = parseFloat($("#result .laso").val());
+var loDeb = parseFloat($("#result .loso").val());
+var dirVent = $( "#valdirVent" ).val();
+var pression = $( "#valPression" ).val();
+var vitVent = $( "#valVitVent" ).val();
+
+var donnee = new Object();
+var zoneConfig = new Object();
+var listDonnee= new Array();
+var listMarker = new Array();
+var nbDonnee = 0;
+zoneConfig.laFin = laFin;
+zoneConfig.loFin = loFin;
+zoneConfig.laDeb = laDeb;
+zoneConfig.loDeb = loDeb;
+zoneConfig.dirVent = dirVent;
+zoneConfig.pression = pression;
+zoneConfig.vitVent = vitVent;
+allZoneConfig[nbEdit] = zoneConfig;
+
+  var SizeOfIcon = 40;
+  var beaufort = [
+    L.icon({ iconUrl: 'src/img/beaufort/beaufort0.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]}),
+    L.icon({ iconUrl: 'src/img/beaufort/beaufort1.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]}),
+    L.icon({ iconUrl: 'src/img/beaufort/beaufort2.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]}),
+    L.icon({ iconUrl: 'src/img/beaufort/beaufort3.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]}),
+    L.icon({ iconUrl: 'src/img/beaufort/beaufort4.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]}),
+    L.icon({ iconUrl: 'src/img/beaufort/beaufort5.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]}),
+    L.icon({ iconUrl: 'src/img/beaufort/beaufort6.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]}),
+    L.icon({ iconUrl: 'src/img/beaufort/beaufort7.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]}),
+    L.icon({ iconUrl: 'src/img/beaufort/beaufort8.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]}),
+    L.icon({ iconUrl: 'src/img/beaufort/beaufort9.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]}),
+    L.icon({ iconUrl: 'src/img/beaufort/beaufort10.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]}),
+    L.icon({ iconUrl: 'src/img/beaufort/beaufort11.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]}),
+    L.icon({ iconUrl: 'src/img/beaufort/beaufort12.png', iconSize: [SizeOfIcon, SizeOfIcon], iconAnchor: [SizeOfIcon/2, SizeOfIcon/2]})
+  ];
+
+
+
+
+for (var i = laDeb; i <= laFin; i = i + 0.5) { 
+    for (var j = loDeb; j <= loFin; j = j + 0.5) { 
+      donnee.lat = i;
+      donnee.long = j;
+      donnee.speed = vitVent;
+      donnee.direction = dirVent;
+
+
+      var power = speedToBeaufort(parseInt(donnee.speed));
+      var marker =  L.marker([donnee.lat, donnee.long], {
+        icon: beaufort[power], iconAngle: parseInt(donnee.direction)
+      });
+
+      marker.addTo(_map).bindPopup("Latitude : "+ donnee.lat +"<br>Longitude : "+ donnee.long +"<br>Vitesse : "+ donnee.speed +" Noeuds<br>Force : "+ power +"<br>Direction : "+ donnee.direction +"°");      
+      
+
+      listMarker[nbDonnee] = marker;
+      listDonnee[nbDonnee] = JSON.parse(JSON.stringify(donnee));
+      nbDonnee++;
+    }
+}
+allEdit[nbEdit] = listMarker[10];
+$('#allEdit').append($('<input class="butZone" type="button" id="zone'+nbEdit+'" value="Zone selection N°'+nbEdit+'"></br>'));
+nbEdit ++;
+
+var datePick = $("#datetimepicker").val();
+///([0-9]{2})/.exec(txt);
+datePick = parseInt(datePick.replace(/[^0-9\.]/g, ''), 10);
+
+var nameFic = datePick.toString().substring(2,10);
+//"previons" + RegExp.$2 + RegExp.$3 + RegExp.$4 + RegExp.$5; 
+var jsonDonnee = JSON.stringify(listDonnee);
+
+
+
+});
+
+$('#allEdit').on('click', '.butZone', function(){
+
+  $('#butSuppr').show();
+  $('#butRet').show();
+  var zoneId = parseInt($(this).attr('id').replace(/[^0-9\.]/g, ''), 10);
+  console.log(zoneId);
+  $('#butVal').val("Modifier la zone N°"+zoneId);
+  zoneCrt = zoneId;
+
+  var config = allZoneConfig[zoneCrt];
+  var marker = allEdit[zoneCrt];
+
+  $( "#valVitVent" ).val( config.vitVent );
+  $( "#valPression" ).val( config.pression );
+  $( "#valdirVent" ).val( config.dirVent );
+
+});
+
+
+$('#butRet').click(function(){
+
+  $('#butSuppr').hide();
+  $('#butRet').hide();
+
 
 });
 
@@ -78,7 +183,7 @@ $('#butSelect').click(function(){
     		$("#butVal").attr("value","Valider sur toute la carte");
     }else{
 
-  			$("#infoPos").show();
+  		//	$("#infoPos").show();
     		$("#butVal").attr("value","Valider sur la zone");
     		areaSelect = L.areaSelect({
 			    width:100, 
@@ -94,3 +199,6 @@ $('#butSelect').click(function(){
 			areaSelect.addTo(_map);
 	}
 }) 
+
+
+
