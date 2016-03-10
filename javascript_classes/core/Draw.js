@@ -59,10 +59,10 @@ Draw.prototype.drawFromJSON = function(nomDuFichier) {
 	$.getJSON(nomDuFichier, function (data){
 		$.each(data, function(index, d){
 			var power = self.speedToBeaufort(d.s);
-			L.marker([d.lat, d.long], {
+			L.marker([d.y, d.x], {
 				icon: self.beaufortIcon[power], 
 				iconAngle: d.d
-			}).addTo(_map).bindPopup("Latitude : "+ d.lat +"<br>Longitude : "+ d.long +"<br>Vitesse : "+ d.s +" Noeuds<br>Force : "+ power +"<br>Direction : "+ d.d +"°");			
+			}).addTo(_map).bindPopup("Latitude : "+ d.y +"<br>Longitude : "+ d.x +"<br>Vitesse : "+ d.s +" Noeuds<br>Force : "+ power +"<br>Direction : "+ d.d +"°");			
 		});
 	});
 };
