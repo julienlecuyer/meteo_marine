@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Météo Marine</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="src/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="src/leaflet-areaselect.css" />
+	<link rel="stylesheet" href="css/map.css" />
+	<link rel="stylesheet" href="css/onoffswitch.css"/>
+</head>
+
+<body>
+	<div id="mapid"></div>
+
+	<div id="sidebar">
+		<span id="title">Parametres</span>
+		<span id="reduce">-</span>
+		<div id="result">
+
+			<table>
+				<td>Zone de selection</td>
+				<td>
+					<div class="switch">
+	  				<input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
+	  				<label for="cmn-toggle-1"></label>
+	  			</td>
+			</table>
+	        Selection Sud Ouest:<br>
+	        <input type="text" class="so"><br>
+	        
+	        Selection Nord Est:<br>
+	        <input type="text" class="ne">
+    	</div>
+	</div>
+</body>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="src/jquery-1.12.1.min.js"></script>
+<script src="src/leaflet/leaflet.js"></script>
+<script src="src/leaflet/plugins/marker-rotate.js"></script>
+<script src="src/leaflet-areaselect.js"></script>
+<script src="js/map.js"></script>
+<script src="js/areaSelect.js"></script>
+</html>
