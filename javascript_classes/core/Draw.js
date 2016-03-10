@@ -2,7 +2,7 @@
  Classe Beaufort
  Définit et dessine tous les objets icone de beaufort
 */
-function Beaufort () {
+function Draw () {
 	this.SizeOfIcon = 30;
 	this.beaufortIcon = [
 		L.icon({ iconUrl: 'src/img/beaufort/beaufort0.png', iconSize: [this.SizeOfIcon, this.SizeOfIcon], iconAnchor: [this.SizeOfIcon/2, this.SizeOfIcon/2]}),
@@ -22,7 +22,7 @@ function Beaufort () {
 }
 
 /* fonction de conversion de la  vitesse (en noeuds) à sa force (echelle de Beaufort) pour afficher les bons icônes */
-Beaufort.prototype.speedToBeaufort = function(speed) {
+Draw.prototype.speedToBeaufort = function(speed) {
 	var beaufort = 0;
 	if (speed < 1) 
 		beaufort = 0;
@@ -54,16 +54,15 @@ Beaufort.prototype.speedToBeaufort = function(speed) {
 	return beaufort;
 };
 
-Beaufort.prototype.drawFromJSON = function(nomDuFichier) {
-	//'https://raw.githubusercontent.com/julienlecuyer/meteo_marine/master/data/previsions16030906.json'
+Draw.prototype.drawFromJSON = function(nomDuFichier) {
 	var self = this;
 	$.getJSON(nomDuFichier, function (data){
 		$.each(data, function(index, d){
-			var power = self.speedToBeaufort(d.speed);
+			var power = self.speedToBeaufort(d.s);
 			L.marker([d.lat, d.long], {
 				icon: self.beaufortIcon[power], 
-				iconAngle: d.direction
-			}).addTo(_map).bindPopup("Latitude : "+ d.lat +"<br>Longitude : "+ d.long +"<br>Vitesse : "+ d.speed +" Noeuds<br>Force : "+ power +"<br>Direction : "+ d.direction +"°");			
+				iconAngle: d.d
+			}).addTo(_map).bindPopup("Latitude : "+ d.lat +"<br>Longitude : "+ d.long +"<br>Vitesse : "+ d.s +" Noeuds<br>Force : "+ power +"<br>Direction : "+ d.d +"°");			
 		});
 	});
 };
