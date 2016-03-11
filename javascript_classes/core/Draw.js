@@ -23,30 +23,48 @@ function Draw () {
 
 
 Draw.prototype.fromJSON = function(nomDuFichier) {
+	console.log("toto");
 	var self = this;
 	$.getJSON(nomDuFichier, function (data){
 		$.each(data, function(index, d){
-			var power = self.speedToBeaufort(d.s);
-			L.marker([d.y, d.x], {
-				icon: self.beaufortIcon[power], 
-				iconAngle: d.d
-			}).addTo(_map).bindPopup("Latitude : "+ d.y +"<br>Longitude : "+ d.x +"<br>Vitesse : "+ d.s +" Noeuds<br>Force : "+ power +"<br>Direction : "+ d.d +"°");			
+				var power = self.speedToBeaufort(d.s);
+				L.marker([d.y, d.x], {
+					icon: self.beaufortIcon[power], 
+					iconAngle: d.d
+				}).addTo(_map).bindPopup("Latitude : "+ d.y +"<br>Longitude : "+ d.x +"<br>Vitesse : "+ d.s +" Noeuds<br>Force : "+ power +"<br>Direction : "+ d.d +"°");			
+			
+			console.log(d);
 		});
 	});
 };
 
-//fonction dessinant à partir du  JSON  
-Draw.prototype.fromCurrentJSON = function (){
-	var d = new Date();
+//fonction dessinant à partir du  JSON du jour 
+Draw.prototype.getCurrentJSON = function (){
+	/*var d 		= new Date();
+	var year 	= d.getFullYear();
+	var month 	= (d.getMonth()+1);
+	var day 	= d.getDate();
+	var hour;
+	var isBissextile = new Date(year,1,1).getMonth() == new Date(year,1,29).getMonth() ? true : flase;
+
+	if (d.getHours() < 6) hour = "00"
+	else if (d.getHours() < 12) hour = "06"
+	else if (d.getHours() < 18)	hour = "12"
+	else hour = "18"
+
+	if (hour === "00" )day = day-1;
+
+	if (isBissextile)*/
+	
+	//return 'http://dev.radarvirtuel.com/jlecuyer/parser_grib2/parser.php?latNW='+_map.getBounds().getNorthWest().lat+'&lngNW='	+_map.getBounds().getNorthWest().lng+'&latSE='	+_map.getBounds().getSouthEast().lat+'&lngSE='	+_map.getBounds().getSouthEast().lng+'';
+	//return 'https://raw.githubusercontent.com/julienlecuyer/meteo_marine/master/data/previsions2016030906.json';
+	return 'http://dev.radarvirtuel.com/jlecuyer/parser_grib2/parser.php?latNW=42&lngNW=32&latSE=23&lngSE=34'
 }
 
-Draw.prototype.getZone = function(){
-	
-	var NW = _map.getBounds().getNorthWest();
-	var SE = _map.getBounds().getSouthEasth();
-	
-	return zone;
-}
+
+/*Draw.prototype.isInZone = function(point){
+	return (point.lat < _map.getBounds().getNorthWest().lat && point.lng > _map.getBounds().getNorthWest().lng && point.lat > _map.getBounds().getSouthEast().lat  && point.lng < _map.getBounds().getSouthEast().lng)
+}*/
 
 // fonction de conversion de la  vitesse (en noeuds) à sa force (echelle de Beaufort) pour afficher les bons icônes 
 Draw.prototype.speedToBeaufort = function(speed) {

@@ -13,7 +13,8 @@ $(function() {
 
 	L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {}).addTo(_map);
 	_draw = new Draw();
-	_draw.fromJSON('https://raw.githubusercontent.com/julienlecuyer/meteo_marine/master/data/previsions16030906.json');
+	_draw.fromJSON(_draw.getCurrentJSON());
+	//_draw.fromJSON('https://raw.githubusercontent.com/julienlecuyer/meteo_marine/master/parser_grib2/json/2016030706.json');
 		
 });
 
