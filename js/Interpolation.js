@@ -12,19 +12,19 @@ function Interpolation (vit1, ang1, vit2,  ang2, factor) {
 }
 
 Interpolation.prototype.getU = function() {
-	return this.uVector.toFixed(2);
+	return this.uVector;
 };
 
 Interpolation.prototype.getV = function() {
-	return this.vVector.toFixed(2);
+	return this.vVector;
 };
 
 Interpolation.prototype.getSpeed = function() {
-	return this.speed.toFixed(2);
+	return this.speed;
 };
 
 Interpolation.prototype.getAngle = function() {
-	return this.angle.toFixed(2);
+	return this.angle;
 };
 
 /*

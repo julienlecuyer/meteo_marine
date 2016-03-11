@@ -8,7 +8,7 @@ function factorSpace (PointVecteur1, PointVecteur2, PointObservation) {
 }
 
 factorSpace.prototype.getFactor = function() {
-	return this.uVector.facteur(2);
+	return this.facteur;
 };
 
 /*
