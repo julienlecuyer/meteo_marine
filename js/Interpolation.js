@@ -1,6 +1,6 @@
 /*
  Classe Interpolation
- Calcule l'interpolation spatiale de deux vecteurs avec un facteur
+ Calcule l'interpolation  de deux vecteurs avec un facteur
 */
 
 function Interpolation (vit1, ang1, vit2,  ang2, factor) {
