@@ -8,7 +8,7 @@ function factorTime (TempVecteur1, TempVecteur2, TempObservation) {
 }
 
 factorTime.prototype.getFactor = function() {
-	return this.uVector.facteurTemp(2);
+	return this.facteurTemp;
 };
 
 /*
