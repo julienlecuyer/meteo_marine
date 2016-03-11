@@ -13,6 +13,19 @@ $(function() {
 
 	L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {}).addTo(_map);
 	_draw = new Draw();
-	_draw.drawFromJSON('https://raw.githubusercontent.com/julienlecuyer/meteo_marine/master/data/previsions16030906.json');
+	_draw.fromJSON('https://raw.githubusercontent.com/julienlecuyer/meteo_marine/master/data/previsions16030906.json');
 		
+});
+
+
+var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel" 
+$('#mapid').bind(mousewheelevt, function(e){
+    var evt = window.event || e 
+    evt = evt.originalEvent ? evt.originalEvent : evt; 
+    var delta = evt.detail ? evt.detail*(-40) : evt.wheelDelta 
+    if(delta > 0) {
+        _map.zoomIn(2);
+    }else{
+        _map.zoomOut(2);
+    }   
 });

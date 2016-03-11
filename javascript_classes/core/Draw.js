@@ -22,7 +22,7 @@ function Draw () {
 }
 
 
-Draw.prototype.drawFromJSON = function(nomDuFichier) {
+Draw.prototype.fromJSON = function(nomDuFichier) {
 	var self = this;
 	$.getJSON(nomDuFichier, function (data){
 		$.each(data, function(index, d){
@@ -35,14 +35,20 @@ Draw.prototype.drawFromJSON = function(nomDuFichier) {
 	});
 };
 
+//fonction dessinant à partir du  JSON  
+Draw.prototype.fromCurrentJSON = function (){
+	var d = new Date();
+}
 
 Draw.prototype.getZone = function(){
 	
-	(_map.getBounds().getNorthWest());
+	var NW = _map.getBounds().getNorthWest();
+	var SE = _map.getBounds().getSouthEasth();
+	
 	return zone;
 }
 
-/* fonction de conversion de la  vitesse (en noeuds) à sa force (echelle de Beaufort) pour afficher les bons icônes */
+// fonction de conversion de la  vitesse (en noeuds) à sa force (echelle de Beaufort) pour afficher les bons icônes 
 Draw.prototype.speedToBeaufort = function(speed) {
 	var beaufort = 0;
 	if (speed < 1) 
