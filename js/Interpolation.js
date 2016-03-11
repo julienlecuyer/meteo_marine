@@ -1,6 +1,6 @@
 /*
  Classe Interpolation
- Calcule l'interpolation  de deux vecteurs avec un facteur
+ Calcule l'interpolation de deux vecteurs avec un facteur
 */
 
 function Interpolation (vit1, ang1, vit2,  ang2, factor) {
@@ -34,10 +34,6 @@ Interpolation.prototype.getAngle = function() {
  - u vector et,
  - v vector.
 */
-
-//|---------------|
-//0               1
-//v1              v2
 Interpolation.prototype.calcule = function(vit1, ang1, vit2,  ang2, factor) {
 	const Pi=3.1416;	
 	var xR, yR, vRes,theta, thetaDeg;
