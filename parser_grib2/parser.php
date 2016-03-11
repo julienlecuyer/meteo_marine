@@ -1,16 +1,16 @@
 <?php
 	echo "==> Extraction donnees vents\n";
-	exec("wgrib2\wgrib2 wgrib2/gfs.t06z.pgrb2full.0p50.f162 -wind_speed out -wind_dir out");
+	exec("wgrib2\wgrib2 ".$argv[1]." -wind_speed data/out -wind_dir data/out");
 	echo "==> Ecriture donnees WIND\n";
-	exec('wgrib2\wgrib2 out -s | findstr /R /C":WIND:10[ ]*m[ ]above[ ]ground" | wgrib2\wgrib2 -i out -spread in.txt');
+	exec('wgrib2\wgrib2 data/out -s | findstr /R /C":WIND:10[ ]*m[ ]above[ ]ground" | wgrib2\wgrib2 -i data/out -spread data/in.txt');
 	echo "==> Ecriture donnees WDIR\n";
-	exec('wgrib2\wgrib2 out -s | findstr /R /C":WDIR:10[ ]*m[ ]above[ ]ground" | wgrib2\wgrib2 -i out -append -spread in.txt');
+	exec('wgrib2\wgrib2 data/out -s | findstr /R /C":WDIR:10[ ]*m[ ]above[ ]ground" | wgrib2\wgrib2 -i data/out -append -spread data/in.txt');
 
 
 
 	ini_set('memory_limit', '-1');
-	$handle = fopen("in.txt", 'r');
-
+	$handle = fopen("data/in.txt", 'r');
+	$date = "";
 	$mode = 0;
 	$array = array();
 	$data = array(
@@ -30,9 +30,9 @@
 				$mode = 0;
 				$buffer = fgets($handle);
 			} else if(strcmp(explode(" ", $buffer)[0],"lon,lat,WDIR") == 0) {
-
 				echo "Mode DIR\n";
 				$mode = 1;
+				$date = explode("d=", $buffer)[1];
 				$buffer = fgets($handle);
 			}
 			if($mode == 0) {
@@ -60,7 +60,7 @@
 	$json = str_replace('\r\n','', $json);
 	$json = str_replace('\n','', $json);
 	echo "==> Ecriture fichier json";
-	$jsonfic = fopen("out.json", 'w+');
+	$jsonfic = fopen("json/".explode(" ", $date)[0].".json", 'w+');
 	fputs($jsonfic, $json);
 	echo "FIN DU PROGRAMME";
 ?>
